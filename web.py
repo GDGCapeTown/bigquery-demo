@@ -147,6 +147,7 @@ def get_subscribers_on_basestations_query(south, north, west, east, hourofday):
           cell_towers.area = measurements.area AND
           cell_towers.cell = measurements.cell
         ORDER BY measurements.count DESC
+        LIMIT 10000;
         """.format(south=south, west=west, north=north, east=east, hourofday=hourofday)
     else:        
         query = """
@@ -178,6 +179,7 @@ def get_subscribers_on_basestations_query(south, north, west, east, hourofday):
           cell_towers.area = measurements.area AND
           cell_towers.cell = measurements.cell
         ORDER BY measurements.count DESC
+        LIMIT 10000;
         """.format(south=south, west=west, north=north, east=east, hourofday=hourofday)
     return query
 
@@ -207,13 +209,14 @@ def get_signal_strength_query(scalingfactor, south, north, west, east):
            GROUP BY lat_scaled, lon_scaled
           )
         ORDER BY ave_signal_strength ASC
+        LIMIT 10000;
         """.format(scalingfactor=scalingfactor, south=south, west=west, north=north, east=east)
     else:
         query = """
         SELECT
           lat_scaled/{scalingfactor} AS lat,
           lon_scaled/{scalingfactor} AS lon,
-          ave_signal_strength,
+          ave_signal_strength AS count,
           num_measurements
         FROM
           (SELECT
@@ -231,7 +234,8 @@ def get_signal_strength_query(scalingfactor, south, north, west, east):
             signal <= 32
            GROUP BY lat_scaled, lon_scaled
           )
-        ORDER BY ave_signal_strength ASC
+        ORDER BY ave_signal_strength DESC
+        LIMIT 10000;
         """.format(scalingfactor=scalingfactor, south=south, west=west, north=north, east=east)
     return query
 
