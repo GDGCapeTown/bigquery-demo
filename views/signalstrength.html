@@ -1,0 +1,23 @@
+{% extends "views/base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="/css/main.css">
+{% endblock %}
+{% block content %}
+
+<div class="container" id="map-canvas"></div>
+
+{% endblock %}
+
+{% block endscripts %}
+
+<script src="/js/main.js"></script>
+<script>
+	var requestUrl = "/getFrame/signalstrength";
+	google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+{% endblock %}

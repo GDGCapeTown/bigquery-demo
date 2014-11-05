@@ -1,0 +1,27 @@
+html, body, #map-canvas {
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+#panel {
+    position: absolute;
+    top: 5px;
+    left: 15%;
+    margin-left: -180px;
+    z-index: 5;
+    background-color: #C9C9C9;
+    padding: 5px;
+    font-size:40px;
+    height:40px;
+    border: 1px solid #999;
+}
+
+#stepbutton {
+    position:absolute;
+    z-index: 5;
+    left: 15%;
+    margin-left: -180px;
+    font-size:28px;
+    top: 95px;
+}

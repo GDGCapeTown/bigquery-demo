@@ -1,0 +1,24 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    {% block head %}
+    {% endblock %}
+</head>
+<body>
+    <ul class="nav nav-tabs navbar-inverse">
+        <li><a href="/">Location of subscribers</a></li>
+        <li><a href="/subscribersonbasestations">Subscribers on basestations</a></li>
+        <li><a href="/signalstrength">Signal strength</a></li>
+    </ul>
+
+    {% block content %}{% endblock %}
+    
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=visualization"></script>
+    <script src="/js/jquery-2.1.1.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    
+    {% block endscripts %}
+    {% endblock %}
+</body>
