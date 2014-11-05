@@ -189,7 +189,7 @@ def get_signal_strength_query(scalingfactor, south, north, west, east):
         SELECT
           lat_scaled/{scalingfactor} AS lat,
           lon_scaled/{scalingfactor} AS lon,
-          ave_signal_strength,
+          ave_signal_strength AS count,
           num_measurements
         FROM
           (SELECT
