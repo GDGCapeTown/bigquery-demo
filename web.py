@@ -263,7 +263,8 @@ def insert_query(query_string):
             projectId=project_id,
             body=body).execute()
 
-        jobReference=insert_response['jobReference']
+        jobReference = insert_response['jobReference']
+
         while(not insert_response['jobComplete']):
             print 'Job not yet complete...'
             insert_response = job_collection.getQueryResults(
@@ -275,12 +276,21 @@ def insert_query(query_string):
         while u'rows' in insert_response and current_row < insert_response[u'totalRows']:
             response_list.append(insert_response)
             current_row += len(insert_response[u'rows'])
+
             insert_response = job_collection.getQueryResults(
                 projectId=project_id,
                 jobId=insert_response[u'jobReference'][u'jobId'],
                 startIndex=current_row).execute()
 
-        return get_table_from_result_list(response_list)
+        job_result = job_collection.get(
+            projectId=jobReference['projectId'],
+                jobId=jobReference['jobId']).execute()
+
+        bytes_processed = job_result['statistics']['totalBytesProcessed']
+        table = get_table_from_result_list(response_list)
+        logging.debug(job_result)
+
+        return table, bytes_processed
     except HttpError:
         log.exception(u'Failed to run query [%s] in BigQuery', query_string)
         return None
@@ -299,11 +309,12 @@ def table_to_latloncount(table):
     return response
 
 def getFrameForQuery(query):
-    response = insert_query(query)
-    response = table_to_latloncount(response)
+    table, totalBytesProcessed = insert_query(query)
+    table = table_to_latloncount(table)
 
     response = {
-        'data': response
+        'data': table,
+        'totalBytesProcessed': totalBytesProcessed
     }
 
     return response

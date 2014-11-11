@@ -6,6 +6,9 @@ var request_interval = 2000;
 var fadeInterval = 800;
 var active_heatmap = 0;
 var xhr = null;
+var requestTimer = null;
+var requestTimerSeconds = 0;
+var boundsChangedTimer = null;
 
 var heatmapData = [];
 google.maps.event.addDomListener(window, 'load', initialize);
@@ -42,10 +45,19 @@ function initialize() {
 
 function queryOnZoomChangeSetup(){
     google.maps.event.addListener(map, 'bounds_changed', function() {
-        requestData(false);
+        runBoundsChangedTimer();
     });
 }
 
+function runBoundsChangedTimer(){
+  if (boundsChangedTimer != null)
+    clearTimeout(boundsChangedTimer);
+
+  boundsChangedTimer = setTimeout(function(){
+    requestData(false);
+    boundsChangedTimer = null;
+  },2000);
+}
 
 function fadeinWrapper(heatmap, i){
     window.setTimeout(function(){
@@ -111,6 +123,22 @@ function get_request_seconds(increment){
   return (requested_time.getTime() - midnight.getTime())/1000;
 }
 
+function runRequestTimer(){
+  requestTimer = setInterval(function(){
+    requestTimerSeconds += 1;
+    $("#requesttimer").text(requestTimerSeconds + "s");
+  }, 1000);
+}
+
+function stopRequestTimer(){
+  if (requestTimer != null)
+    clearInterval(requestTimer);
+
+  $("#requesttimer").text(requestTimerSeconds + "s - done");
+  requestTimerSeconds = 0;
+  requestTimer = null;
+}
+
 function requestData(incrementHour){
   if (xhr != null){
     return;
@@ -124,6 +152,11 @@ function requestData(incrementHour){
   var neLon = map.getBounds().getNorthEast().lng();
   var swLat = map.getBounds().getSouthWest().lat();
   var swLon = map.getBounds().getSouthWest().lng();
+
+  $("#bytesprocessed").text("");
+  $("#requesttimer").text("0");
+
+  runRequestTimer();
 
   xhr = $.ajax({
     type: "GET",
@@ -149,19 +182,24 @@ function requestData(incrementHour){
 
     setPoints();
     xhr = null;
+    stopRequestTimer();
 
+    gbprocessed = parseFloat(responseObj.totalBytesProcessed / 1000000000).toFixed(2);
     ampm = responseObj.seconds_since_midnight/60/60 >= 12 ? "PM" : "AM";
-    $("#hour").text(responseObj.seconds_since_midnight/60/60 + ampm);
+    $("#hourbox").text(responseObj.seconds_since_midnight/60/60 + ':00' + ampm);
+    $("#bytesprocessed").text(gbprocessed + "GB");
 
+    console.log("bytes processed: " + responseObj.totalBytesProcessed);
     console.log("request complete. length is: " + newDataSet.length);
   })
   .fail(function(){
+    stopRequestTimer();
     xhr = null;
   });
 }
 
 $(document).ready(function(){
-    $("#stepbutton").click(function(){
+    $("#stephourbutton").click(function(){
         requestData(true);
     });    
 });
