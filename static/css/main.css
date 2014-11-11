@@ -6,36 +6,43 @@ html, body, #map-canvas {
 }
 #hourbox {
     position: absolute;
-    bottom: 5px;
+    bottom: 100px;
+    background-color: #3276b1;
+    padding:10px;
     color:#ffffff;
-    left: 1%;
+    left: 10px;
     z-index: 5;
     font-size:40px;
-    height:50px;
 }
 
 #stephourbutton {
     position:absolute;
+    background-color: #3276b1;
+    padding:10px;
     z-index: 5;
-    left: 9%;
-    font-size:28px;
-    bottom: 5px;
+    left: 10px;
+    font-size:18px;
+    bottom: 50px;
 }
 
 #requesttimer {
     position:absolute;
+    background-color: #3276b1;
+    padding:10px;
     z-index: 5;
     color:#ffffff;
-    left: 17%;
+    left: 10px;
     font-size:18px;
-    bottom: 5px;
+    bottom: 1px;
 }
 
 #bytesprocessed {
     position:absolute;
+    background-color: #3276b1;
+    padding:10px;
     z-index: 5;
     color:#ffffff;
-    left: 22%;
+    left: 120px;
     font-size:18px;
-    bottom: 5px;   
+    bottom: 1px;
 }

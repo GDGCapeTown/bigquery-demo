@@ -153,7 +153,7 @@ function requestData(incrementHour){
   var swLat = map.getBounds().getSouthWest().lat();
   var swLon = map.getBounds().getSouthWest().lng();
 
-  $("#bytesprocessed").text("");
+  $("#bytesprocessed").text("...");
   $("#requesttimer").text("0");
 
   runRequestTimer();
