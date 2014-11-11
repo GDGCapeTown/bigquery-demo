@@ -4,7 +4,7 @@
 
 {% block head %}
     {{ super() }}
-    <link rel="stylesheet" href="/css/main.css?v=8">
+    <link rel="stylesheet" href="/css/main.css?v=16">
 {% endblock %}
 {% block content %}
 
@@ -17,13 +17,13 @@
 
 {% block endscripts %}
 
-<script src="/js/main.js?v=15"></script>
+<script src="/js/main.js?v=22"></script>
 <script>
 	var requestUrl = "/getFrame/signalstrength";
 	google.maps.event.addDomListener(window, 'load', initialize);
-	$("#toggleautostep").css('display', 'hidden');
-	$("#stephourbutton").css('display', 'hidden');
-	$("#hourbox").css('display', 'hidden');
+	$("#toggleautostep").css('display', 'none');
+	$("#stephourbutton").css('display', 'none');
+	$("#hourbox").css('display', 'none');
 </script>
 
 {% endblock %}

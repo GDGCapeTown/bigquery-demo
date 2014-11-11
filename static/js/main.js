@@ -193,10 +193,10 @@ function requestData(incrementHour){
     $("#hourbox").text(responseObj.seconds_since_midnight/60/60 + ':00' + ampm);
 
     if (cached_hit == true){
-     $("#bytesprocessed").text(gbprocessed + "GB (cached), " + totalRowsInMillions + " rows processed");
+     $("#bytesprocessed").text(gbprocessed + "GB (cached), 1.15 billion rows processed");
     }
     else{
-     $("#bytesprocessed").text(gbprocessed + "GB, " + totalRowsInMillions + " rows processed"); 
+     $("#bytesprocessed").text(gbprocessed + "GB, 1.15 billion rows processed");
     }
 
     console.log("bytes processed: " + responseObj.totalBytesProcessed);

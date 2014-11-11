@@ -73,8 +73,8 @@ def get_location_of_subscribers_query(scalingfactor, south, north, west, east, h
             ROUND(lat*{scalingfactor}, 0) AS lat_scaled,
             ROUND(lon*{scalingfactor}, 0) AS lon_scaled,
             COUNT(*) AS count
-           FROM [africacom.measurements_10]
-           #FROM (TABLE_QUERY(africacom, 'table_id CONTAINS "measurements"'))
+           #FROM [africacom.measurements_10]
+           FROM (TABLE_QUERY(africacom, 'table_id CONTAINS "measurements"'))
            WHERE
             lat > {south} AND
             lon >  {west} AND
@@ -100,8 +100,8 @@ def get_location_of_subscribers_query(scalingfactor, south, north, west, east, h
             ROUND(lat*{scalingfactor}, 0) AS lat_scaled,
             ROUND(lon*{scalingfactor}, 0) AS lon_scaled,
             COUNT(*) AS count
-           FROM [africacom.measurements_10]
-           #FROM (TABLE_QUERY(africacom, 'table_id CONTAINS "measurements"'))
+           #FROM [africacom.measurements_10]
+           FROM (TABLE_QUERY(africacom, 'table_id CONTAINS "measurements"'))
            WHERE
             lat > {south} AND
             lat < {north} AND
@@ -131,8 +131,8 @@ def get_subscribers_on_basestations_query(south, north, west, east, hourofday):
             area,
             cell,
             COUNT(*) AS count
-           FROM [africacom.measurements_10]
-           #FROM (TABLE_QUERY(africacom, 'table_id CONTAINS "measurements"'))
+           #FROM [africacom.measurements_10]
+           FROM (TABLE_QUERY(africacom, 'table_id CONTAINS "measurements"'))
            WHERE
             lat > {south} AND
             lon >  {west} AND
@@ -164,8 +164,8 @@ def get_subscribers_on_basestations_query(south, north, west, east, hourofday):
             area,
             cell,
             COUNT(*) AS count
-           FROM [africacom.measurements_10]
-           #FROM (TABLE_QUERY(africacom, 'table_id CONTAINS "measurements"'))
+           #FROM [africacom.measurements_10]
+           FROM (TABLE_QUERY(africacom, 'table_id CONTAINS "measurements"'))
            WHERE
             lat > {south} AND
             lat < {north} AND
@@ -197,8 +197,8 @@ def get_signal_strength_query(scalingfactor, south, north, west, east):
             ROUND(lon*{scalingfactor}, 0) AS lon_scaled,
             AVG(signal) AS ave_signal_strength,
             COUNT(*) AS num_measurements
-           FROM [africacom.measurements_10]
-           #FROM (TABLE_QUERY(africacom, 'table_id CONTAINS "measurements"'))
+           #FROM [africacom.measurements_10]
+           FROM (TABLE_QUERY(africacom, 'table_id CONTAINS "measurements"'))
            WHERE
             lat > {south} AND
             lon >  {west} AND
@@ -224,8 +224,8 @@ def get_signal_strength_query(scalingfactor, south, north, west, east):
             ROUND(lon*{scalingfactor}, 0) AS lon_scaled,
             AVG(signal) AS ave_signal_strength,
             COUNT(*) AS num_measurements
-           FROM [africacom.measurements_10]
-           #FROM (TABLE_QUERY(africacom, 'table_id CONTAINS "measurements"'))
+           #FROM [africacom.measurements_10]
+           FROM (TABLE_QUERY(africacom, 'table_id CONTAINS "measurements"'))
            WHERE
             lat > {south} AND
             lat < {north} AND

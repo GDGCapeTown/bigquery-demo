@@ -5,7 +5,7 @@ html, body, #map-canvas {
     padding: 0px;
 }
 #hourbox {
-    display:hidden;
+    display:none;
     background-color: #222;
     margin-left: 5px;
     color:#ffffff;
@@ -13,7 +13,7 @@ html, body, #map-canvas {
 }
 
 #stephourbutton {
-    display:hidden;
+    display:none;
     margin-left: 5px;
 }
 
@@ -34,6 +34,6 @@ html, body, #map-canvas {
 }
 
 #toggleautostep {
-    display:hidden;
+    display:none;
     margin-left: 5px;
 }
