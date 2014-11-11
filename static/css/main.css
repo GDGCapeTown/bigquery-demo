@@ -5,44 +5,35 @@ html, body, #map-canvas {
     padding: 0px;
 }
 #hourbox {
-    position: absolute;
-    bottom: 100px;
-    background-color: #3276b1;
-    padding:10px;
+    display:hidden;
+    background-color: #222;
+    margin-left: 5px;
     color:#ffffff;
-    left: 10px;
-    z-index: 5;
-    font-size:40px;
+    padding:10px;
 }
 
 #stephourbutton {
-    position:absolute;
-    background-color: #3276b1;
-    padding:10px;
-    z-index: 5;
-    left: 10px;
-    font-size:18px;
-    bottom: 50px;
+    display:hidden;
+    margin-left: 5px;
 }
 
 #requesttimer {
-    position:absolute;
-    background-color: #3276b1;
-    padding:10px;
-    z-index: 5;
+    display: inline-block;
+    background-color: #222;
     color:#ffffff;
-    left: 10px;
-    font-size:18px;
-    bottom: 1px;
+    margin-left: 5px;
+    padding:10px;
 }
 
 #bytesprocessed {
-    position:absolute;
-    background-color: #3276b1;
-    padding:10px;
-    z-index: 5;
+    display: inline-block;
+    background-color: #222;
+    margin-left: 5px;
     color:#ffffff;
-    left: 120px;
-    font-size:18px;
-    bottom: 1px;
+    padding:10px;
+}
+
+#toggleautostep {
+    display:hidden;
+    margin-left: 5px;
 }

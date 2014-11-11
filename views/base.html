@@ -11,6 +11,13 @@
         <li><a href="/">Location of subscribers</a></li>
         <li><a href="/subscribersonbasestations">Subscribers on basestations</a></li>
         <li><a href="/signalstrength">Signal strength</a></li>
+        
+        <div id="toggleautostep" class="btn btn-primary" onclick="toggleAutostep();">Toggle auto hour</div>
+        <div id="stephourbutton" class="btn btn-primary">next hour</div>
+        
+        <div id="hourbox">...</div>
+        <div id="requesttimer">0</div>
+        <div id="bytesprocessed">...</div>
     </ul>
 
     {% block content %}{% endblock %}

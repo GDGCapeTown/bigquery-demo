@@ -4,15 +4,15 @@
 
 {% block head %}
     {{ super() }}
-    <link rel="stylesheet" href="/css/main.css?v=5">
+    <link rel="stylesheet" href="/css/main.css?v=8">
 {% endblock %}
 {% block content %}
 
 <div class="container" id="map-canvas"></div>
-<div id="hourbox"></div>
+<div id="hourbox">...</div>
 <div id="stephourbutton" class="btn btn-primary">next hour</div>
 <div id="requesttimer">0</div>
-<div id="bytesprocessed"></div>
+<div id="bytesprocessed">...</div>
 
 {% endblock %}
 
@@ -22,6 +22,9 @@
 <script>
 	var requestUrl = "/getFrame/subscribersonbasestations";
 	google.maps.event.addDomListener(window, 'load', initialize);
+	$("#toggleautostep").css('display', 'inline-block');
+	$("#stephourbutton").css('display', 'inline-block');
+	$("#hourbox").css('display', 'inline-block');
 </script>
 
 {% endblock %}

@@ -9,6 +9,7 @@ var xhr = null;
 var requestTimer = null;
 var requestTimerSeconds = 0;
 var boundsChangedTimer = null;
+var auto_step = false;
 
 var heatmapData = [];
 google.maps.event.addDomListener(window, 'load', initialize);
@@ -186,16 +187,38 @@ function requestData(incrementHour){
 
     gbprocessed = parseFloat(responseObj.totalBytesProcessed / 1000000000).toFixed(2);
     ampm = responseObj.seconds_since_midnight/60/60 >= 12 ? "PM" : "AM";
+    totalRowsInMillions = responseObj.totalRows;
+    cached_hit = responseObj.cached_hit
+
     $("#hourbox").text(responseObj.seconds_since_midnight/60/60 + ':00' + ampm);
-    $("#bytesprocessed").text(gbprocessed + "GB");
+
+    if (cached_hit == true){
+     $("#bytesprocessed").text(gbprocessed + "GB (cached), " + totalRowsInMillions + " rows processed");
+    }
+    else{
+     $("#bytesprocessed").text(gbprocessed + "GB, " + totalRowsInMillions + " rows processed"); 
+    }
 
     console.log("bytes processed: " + responseObj.totalBytesProcessed);
     console.log("request complete. length is: " + newDataSet.length);
+
+    if (auto_step == true){
+      setTimeout(function(){
+        requestData(true);
+      },2000);
+    }
   })
   .fail(function(){
     stopRequestTimer();
     xhr = null;
   });
+}
+
+function toggleAutostep(){
+  auto_step = !auto_step;
+
+  if (auto_step == true)
+    requestData(true);
 }
 
 $(document).ready(function(){
