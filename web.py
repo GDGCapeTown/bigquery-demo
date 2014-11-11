@@ -11,7 +11,7 @@ from apiclient.discovery import build
 from oauth2client.appengine import AppAssertionCredentials
 
 SCOPE = 'https://www.googleapis.com/auth/bigquery'
-PROJECT_NUMBER = '283921890307'
+PROJECT_NUMBER = 'XXXXXXXXXXX'
 
 credentials = AppAssertionCredentials(scope=SCOPE)
 http = credentials.authorize(httplib2.Http())
