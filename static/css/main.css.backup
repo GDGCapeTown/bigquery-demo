@@ -1,0 +1,39 @@
+html, body, #map-canvas {
+    height: 100%;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+#hourbox {
+    display:none;
+    background-color: #222;
+    margin-left: 5px;
+    color:#ffffff;
+    padding:10px;
+}
+
+#stephourbutton {
+    display:none;
+    margin-left: 5px;
+}
+
+#requesttimer {
+    display: inline-block;
+    background-color: #222;
+    color:#ffffff;
+    margin-left: 5px;
+    padding:10px;
+}
+
+#bytesprocessed {
+    display: inline-block;
+    background-color: #222;
+    margin-left: 5px;
+    color:#ffffff;
+    padding:10px;
+}
+
+#toggleautostep {
+    display:none;
+    margin-left: 5px;
+}

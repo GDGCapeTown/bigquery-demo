@@ -1,39 +1,33 @@
-html, body, #map-canvas {
-    height: 100%;
-    width: 100%;
-    margin: 0px;
-    padding: 0px;
+html,body{
+  height: 100%;
+  margin: 0;
+  background-color: #E5E5E5;
+  font-family: 'RobotoDraft', sans-serif;
 }
-#hourbox {
-    display:none;
-    background-color: #222;
-    margin-left: 5px;
-    color:#ffffff;
-    padding:10px;
+core-header-panel {
+  height: 50px;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
-
-#stephourbutton {
-    display:none;
-    margin-left: 5px;
+core-toolbar {
+  background: #000000;
+  color: white;
 }
-
-#requesttimer {
-    display: inline-block;
-    background-color: #222;
-    color:#ffffff;
-    margin-left: 5px;
-    padding:10px;
+#tabs{
+  width: 50%;
+  margin: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  text-transform: uppercase;
 }
-
-#bytesprocessed {
-    display: inline-block;
-    background-color: #222;
-    margin-left: 5px;
-    color:#ffffff;
-    padding:10px;
+#map-canvas{
+  height:100%;
+  width:100%;
 }
 
-#toggleautostep {
-    display:none;
-    margin-left: 5px;
+
+paper-tab::shadow #ink {
+  color: #ff4081;
 }

@@ -11,7 +11,7 @@ from apiclient.discovery import build
 from oauth2client.appengine import AppAssertionCredentials
 
 SCOPE = 'https://www.googleapis.com/auth/bigquery'
-PROJECT_NUMBER = 'XXXXXXXXXXX'
+PROJECT_NUMBER = '283921890307'
 
 credentials = AppAssertionCredentials(scope=SCOPE)
 http = credentials.authorize(httplib2.Http())
@@ -123,7 +123,7 @@ def get_subscribers_on_basestations_query(south, north, west, east, hourofday):
           cell_towers.lon AS lon,
           measurements.count AS count
         FROM africacom.cell_towers AS cell_towers
-        INNER JOIN 
+        INNER JOIN EACH
         (
            SELECT
             mcc,
@@ -139,7 +139,7 @@ def get_subscribers_on_basestations_query(south, north, west, east, hourofday):
             lat < {north} AND
             lon <  {east} AND
             HOUR(measured) = {hourofday}
-           GROUP BY mcc, net, area, cell
+           GROUP EACH BY mcc, net, area, cell
         ) AS measurements
         ON 
           cell_towers.mcc = measurements.mcc AND
@@ -156,7 +156,7 @@ def get_subscribers_on_basestations_query(south, north, west, east, hourofday):
           cell_towers.lon AS lon,
           measurements.count AS count
         FROM africacom.cell_towers AS cell_towers
-        INNER JOIN 
+        INNER JOIN EACH
         (
            SELECT
             mcc,
@@ -171,7 +171,7 @@ def get_subscribers_on_basestations_query(south, north, west, east, hourofday):
             lat < {north} AND
             (lon < {east} OR lon > {west}) AND
             HOUR(measured) = {hourofday}
-           GROUP BY mcc, net, area, cell
+           GROUP EACH BY mcc, net, area, cell
         ) AS measurements
         ON 
           cell_towers.mcc = measurements.mcc AND
@@ -296,7 +296,7 @@ def insert_query(query_string):
         table = get_table_from_result_list(response_list)
         #logging.debug(job_result)
 
-        return table, bytes_processed, cached_hit, totalRows
+        return (table, bytes_processed, cached_hit, totalRows)
     except HttpError:
         log.exception(u'Failed to run query [%s] in BigQuery', query_string)
         return None

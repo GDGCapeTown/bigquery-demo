@@ -12,7 +12,6 @@ var boundsChangedTimer = null;
 var auto_step = false;
 
 var heatmapData = [];
-google.maps.event.addDomListener(window, 'load', initialize);
 
 function initialize() {
   var mapOptions = {
